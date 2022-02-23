@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_analytics.css">
+    <link rel="icon" href="../img/favicon.ico">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="../img/logo.png" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">FINANCE</span>
+                    <span class="profession">AUTOMATISATION</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="dashboard.html">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="analytics.html">
+                            <i class='bx bx-pie-chart-alt icon'></i>
+                            <span class="text nav-text">Analytics</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">User</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-link">
+                        <a href="changelog.html">
+                            <i class='bx bx-notification icon'></i>
+                            <span class="text nav-text">Changelog</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+
+            </div>
+        </div>
+
+    </nav>
+
+    <section class="home">
+        <div class="text">Analytics</div>
+        <div class="container">
+			<header>
+        <h1 class="text">Ranking Stocks</h1>
+			</header>
+			<div class="wrapper">
+				<table id="myTable">
+					<thead id="thead">
+						<tr id="thtitle">
+							<th id="firstTh">Rank
+								<button onclick=""><i class="bx bx-sort-down icon"></i></button>
+							</th>
+							<th>Symbol
+								<button onclick=""><i class="bx bx-sort-down icon"></i></button>
+							</th>
+                            <th>EarningYield
+								<button onclick=""><i class="bx bx-sort-down icon"></i></button>
+							</th>
+                            <th>ROCE
+								<button onclick=""><i class="bx bx-sort-down icon"></i></button>
+							</th>
+                            <th id="lastTh">Most recent quarter data
+								<button onclick=""><i class="bx bx-sort-down icon"></i></button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+				<tr>
+              </tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+    </section>
+</body>
+
+<script src="../js/sidebar.js"></script>
+<script src="../all.js"></script>
+
+</html>
