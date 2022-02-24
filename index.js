@@ -4,6 +4,7 @@ const Datastore = require('nedb')
 const fetch = require('node-fetch')
 const app = express()
 const port = process.env.PORT || 3000
+require('dotenv').config()
 
 // START OF SERVER
 app.listen(port,() => console.log(`listening at ${port}`))
@@ -38,7 +39,7 @@ app.post('/api', (request,response) => {
 app.get('/finance/', async (request,response) => {
 	console.log('FINANCE GET')
 	const endpoint = request.params.endpoint
-	const apiKey = '001b96560baf3c802e96b303b09bc11d:90946e7fe71ec400932b8cd8886b237c'
+	const apiKey = process.env.API_KEY
 	const apiUrl = `https://api.gurufocus.com/public/user/${apiKey}/exchange_stocks/NYSE`
 	const fetch_response = await fetch(apiUrl)
 	const json = await fetch_response.json()
