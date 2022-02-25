@@ -1,9 +1,14 @@
 async function getData(){
 	const response = await fetch('/api')
 	const data = await response.json()
+	display(data)
+	console.log(data)
+}
+
+function display(params){
 	const table = document.getElementById('myTable');
 	let i = 0;
-	for(items of data){
+	for(items of params){
 		var row = table.insertRow(i+1)
 		var cell1 = row.insertCell(0)
 		var cell2 = row.insertCell(1)
@@ -16,13 +21,13 @@ async function getData(){
 
 		cell1.innerHTML = i+1
 		cell2.innerHTML = items.symbol
-		cell3.innerHTML = items.symbol
-		cell4.innerHTML = items.symbol
-		cell5.innerHTML = items.symbol
-		cell6.innerHTML = items.symbol
-		cell7.innerHTML = items.symbol
+		cell3.innerHTML = items.earningyield
+		cell4.innerHTML = items.roce
+		cell5.innerHTML = items.roic
+		cell6.innerHTML = items.detr
+		cell7.innerHTML = items.date
 		i++
 	}
-	console.log(data)
 }
+
 getData()

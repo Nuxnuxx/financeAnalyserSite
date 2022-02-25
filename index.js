@@ -1,5 +1,6 @@
 // DECLARATION MODULE
 const express = require('express')
+const req = require('express/lib/request')
 const Datastore = require('nedb')
 const fetch = require('node-fetch')
 const app = express()
@@ -36,11 +37,23 @@ app.post('/api', (request,response) => {
 })
 
 // GURUSTOCKS EXTERNAL API --> SERVER
-app.get('/finance/', async (request,response) => {
-	console.log('FINANCE GET')
+app.get('/stockList/:endpoint', async (request,response) => {
+	console.log('stockList GET')
 	const endpoint = request.params.endpoint
 	const apiKey = process.env.API_KEY
-	const apiUrl = `https://api.gurufocus.com/public/user/${apiKey}/exchange_stocks/NYSE`
+	const apiUrl = `https://api.gurufocus.com/public/user/${apiKey}/exchange_stocks/${endpoint}`
+	const fetch_response = await fetch(apiUrl)
+	const json = await fetch_response.json()
+	response.json(json)
+})
+
+
+// GURUSTOCKS EXTERNAL API --> SERVER
+app.get('/financial/:stock', async (request,response) => {
+	console.log('financial GET')
+	const stock = request.params.stock
+	const apiKey = process.env.API_KEY
+	const apiUrl = `https://api.gurufocus.com/public/user/${apiKey}/stock/${stock}/financials`
 	const fetch_response = await fetch(apiUrl)
 	const json = await fetch_response.json()
 	response.json(json)
