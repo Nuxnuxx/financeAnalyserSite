@@ -12,7 +12,7 @@ async function getDataApi(){
 	var hours = today.getHours()
 
 	if (hours == 15){
-		let ArrayPush = [];
+		let stockDataArray = [];
 		// TAKE LIST OF ALL STOCKS IN NYSE
 		const exchange = "NYSE"
 		const apiUrlListNyse = `/stockList/${exchange}`
@@ -70,8 +70,8 @@ async function getDataApi(){
 				}else{
 					date = 0
 				}
-				ArrayPush[i] = new dataStructure(stock, earningyield, roce, roic, dter, date)
-				console.log(i,ArrayPush[i])
+				stockDataArray[i] = new dataStructure(stock, earningyield, roce, roic, dter, date)
+				console.log(i,stockDataArray[i])
 			}
 		}
 
@@ -80,7 +80,7 @@ async function getDataApi(){
 			headers: {
 				'Content-Type': "application/json"
 			},
-			body: JSON.stringify(ArrayPush)
+			body: JSON.stringify(stockDataArray)
 		}
 
 		// SEND DATA TO POST TO DB

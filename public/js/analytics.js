@@ -1,9 +1,47 @@
+
 async function getData(){
+	// SEND GET REQUEST TO API
+	const response = await fetch('/api')
+	// TRANSFORM IT TO JSON
+	const data = await response.json()
+	console.log(data)
+	display(data)
+}
+
+async function sortInt(params){
+	// DELETE ALL CHILD TR
+	var tableHeaderRowCount = 1;
+	var table = document.getElementById('myTable');
+	var rowCount = table.rows.length;
+	for (var i = tableHeaderRowCount; i < rowCount; i++) {
+		table.deleteRow(tableHeaderRowCount);
+	}
+
 	const response = await fetch('/api')
 	const data = await response.json()
+	data.sort((a,b) => a[params] - b[params])
+	console.log("data sorted",data)
 	display(data)
-	console.log(data)
 }
+
+// async function sortString(params){
+// 	// DELETE ALL CHILD TR
+// 	var tableHeaderRowCount = 1;
+// 	var table = document.getElementById('myTable');
+// 	var rowCount = table.rows.length;
+// 	for (var i = tableHeaderRowCount; i < rowCount; i++) {
+// 		table.deleteRow(tableHeaderRowCount);
+// 	}
+
+// 	const response = await fetch('/api')
+// 	const data = await response.json()
+// 	data.sort(function (a, b){
+// 		return a.localeCompare(b)
+// 	})
+// 	console.log("data sorted",data)
+// 	display(data)
+// }
+
 
 function display(params){
 	const table = document.getElementById('myTable');
@@ -24,7 +62,7 @@ function display(params){
 		cell3.innerHTML = items.earningyield
 		cell4.innerHTML = items.roce
 		cell5.innerHTML = items.roic
-		cell6.innerHTML = items.detr
+		cell6.innerHTML = items.dter
 		cell7.innerHTML = items.date
 		i++
 	}

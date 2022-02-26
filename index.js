@@ -1,6 +1,5 @@
 // DECLARATION MODULE
 const express = require('express')
-const req = require('express/lib/request')
 const Datastore = require('nedb')
 const fetch = require('node-fetch')
 const app = express()
