@@ -11,7 +11,7 @@ async function getDataApi(){
 	var today = new Date()
 	var hours = today.getHours()
 
-	if (hours == 15){
+	if (hours == 22){
 		let stockDataArray = [];
 		// TAKE LIST OF ALL STOCKS IN NYSE
 		const exchange = "NYSE"
@@ -31,47 +31,41 @@ async function getDataApi(){
 			let dter;
 			let stock = listNyseJson[i]['symbol']
 			let apiUrlStock = `/financial/${stock}`
-			let StockFinancialRaw = await fetch(apiUrlStock)
-			let StockFinancialJson = await StockFinancialRaw.json()
-
-			console.log(StockFinancialJson['financials']['quarterly']['Fiscal Year'].length - 1)
+			try {
+				let StockFinancialRaw = await fetch(apiUrlStock)
+				let StockFinancialJson = await StockFinancialRaw.json()
 
 			if(StockFinancialJson['financials']['quarterly']['Fiscal Year'].length - 1 > 0){
 
 				j = StockFinancialJson['financials']['quarterly']['Fiscal Year'].length - 1
 				console.log(j)
 
-				if(typeof StockFinancialJson['financials']['quarterly']['valuation_ratios']['Earnings Yield (Joel Greenblatt) %'][j] !== 'undefined'){
+				try {
 					earningyield = StockFinancialJson['financials']['quarterly']['valuation_ratios']['Earnings Yield (Joel Greenblatt) %'][j]
-				}else{
-					earningyield = 0
-				}
 
-				if(typeof StockFinancialJson['financials']['quarterly']['common_size_ratios']['ROCE %'][j] !== 'undefined'){
 					roce = StockFinancialJson['financials']['quarterly']['common_size_ratios']['ROCE %'][j]
-				}else{
-					roce = 0
-				}
-
-				if(typeof StockFinancialJson['financials']['quarterly']['common_size_ratios']['ROIC %'][j] !== 'undefined'){
+				
 					roic = StockFinancialJson['financials']['quarterly']['common_size_ratios']['ROIC %'][j]
-				}else{
-					roic = 0
-				}
 
-				if(typeof StockFinancialJson['financials']['quarterly']['common_size_ratios']['Debt-to-Equity'][j] !== 'undefined'){
 					dter = StockFinancialJson['financials']['quarterly']['common_size_ratios']['Debt-to-Equity'][j]
-				}else{
-					dter = 0
-				}
 
-				if(typeof StockFinancialJson['financials']['quarterly']['Fiscal Year'][j] !== 'undefined'){
+
 					date =  StockFinancialJson['financials']['quarterly']['Fiscal Year'][j]
-				}else{
+
+				} catch (error) {
+					console.error(error)
+					earningyield = 0
+					roce = 0 
+					roic = 0
+					dter = 0
 					date = 0
 				}
+
 				stockDataArray[i] = new dataStructure(stock, earningyield, roce, roic, dter, date)
 				console.log(i,stockDataArray[i])
+			}
+			} catch (error) {
+				console.error(error)
 			}
 		}
 
